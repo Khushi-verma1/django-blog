@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render , get_object_or_404 , redirect
 from django.db.models import Q
-from .models import Blog,Category, Comment
+from .models import Blog ,Category, Comment
 
 def posts_by_category(request, category_id):
     #Fatch the post that belongs to the category with the Id category_id
@@ -31,6 +31,7 @@ def blogs(request, slug):
         comment.blog = single_blog
         comment.comment = request.POST['comment']
         comment.save()
+        print(comment.created_at)
         return HttpResponseRedirect(request.path_info)
 
     #Comments
